@@ -1,0 +1,34 @@
+Address 0:		0		The baudrate index: 0 is 9600 b/s
+Address 1:		1		Current selected grating: 1 or 2
+Address 2:		18		Zero offset high byte of machine 1, grating 1
+Address 3:		66		Low byte of the above number
+Address 4:		92		Zero offset high byte of machine 1, grating 2
+Address 5:		148		Low byte of the above number
+Address 6:		128		Calibration high byte of machine 1, grating 1
+Address 7:		0		Low byte of the above number
+Address 8:		128		Calibration high byte of machine 1, grating 2
+Address 9:		0		Low byte of the above number
+Address 10:		3		Groove index of grating 1; 0: = 3600 g/mm; 1: = 2400; 2: = 1800; 3:= 1200; 4: = 600; 5: = 300; 6: = 150; 7: = 75.
+Address 11:		4		Groove index of grating 2. The meaning is the same as grating 1
+Address 12:		1		Blazed high byte of grating 1 in nm
+Address 13:		244		Low byte of the above number
+Address 14:		0		Blazed high byte of grating 2 in nm
+Address 15:		200		Low byte of the above number
+Address 16:		2		Total gratings of machine 1
+Address 17:		0		Total gratings of machine 2. (CM112 only)
+Address 18:		1		Zero offset high byte of machine 2, grating 1. (CM112 only)
+Address 19:		94		Low byte of the above number. (CM112 only)
+Address 20:		92		Zero offset high byte of machine 2, grating 2. (CM112 only)
+Address 21:		98		Low byte of the above number. (CM112 only)
+Address 22:		0		Order and Type. Bit 0 (for m1g1): 1 is - order, 0 is + order; Bit 1 (for m1g2): 1 is - order, 0 is + order; Bit 4 (for grating 1): 1 is subtractive dispersion, 0 is additive dispersion; Bit 5 (for grating 2): 1 is subtractive dispersion, 0 is additive dispersion. (Bits 4,5 CM112 only)
+Address 23:		0		Not used
+Address 24:		2		Current machine 1 unit  0 centimicrons, 1 nm, 2 angstroms
+Address 25:		0		Current machine 2 unit  0 centimicrons, 1 nm, 2 angstroms (CM112 only)
+Address 26:		1		Serial number high byte
+Address 27:		1		Serial number low byte
+Address 28:		0		Not used
+Address 29:		0		Not used
+Address 30:		0		Not used
+Address 31:		0		Not used
+Address 32:		170		AA in hex if programmed
+Address 33:		170		AA in hex if programmed
