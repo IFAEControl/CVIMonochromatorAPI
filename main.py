@@ -13,7 +13,7 @@ if platform.system() == 'Darwin':
     serial_device = '/dev/tty.usbserial'
 elif platform.system() == 'Windows':
     print("I'm on Windows!")
-    serial_device = 'COM3'
+    serial_device = 'COM5'
 elif platform.system() == 'Linux':
     print("I'm on Linux!")
     serial_device = '/dev/ttyUSB0'
