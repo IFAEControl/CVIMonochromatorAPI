@@ -1,6 +1,7 @@
 import serial
 from time import sleep
 
+
 class CVIMonochromator:
     "CVI's monochromator interface for RS232 communications"
     
@@ -16,9 +17,9 @@ class CVIMonochromator:
                      dsrdtr=False,
                      xonxoff=False)   
         if self._port.isOpen():
-            print "\nPort is Open, that's a start, right? \n"
+            print("\nPort is Open, that's a start, right? \n")
         else:
-            print "\nPort isn't Open, nothing good is expected! \n"          
+            print("\nPort isn't Open, nothing good is expected! \n")
         self._cmdList = []
         self._verbose = False
     
@@ -35,7 +36,7 @@ class CVIMonochromator:
         
     def speed(self, selectedSpeed):
         self._cmdList = [13]
-        self._instructionExchange(sizeByte, "speed") 
+        self._instructionExchange(selectedSpeed, "speed")
             
     def goto(self, selectedPosition):
         self._cmdList = [16]
@@ -95,7 +96,7 @@ class CVIMonochromator:
 
     def closeCommunication(self):
         self._port.close()
-        print "\nClosing communications, leamme alone now, was about that time! \n"
+        print("\nClosing communications, leamme alone now, was about that time! \n")
          
     def dumpToFile(self, fileName):
         addressMeaning = ["The baudrate index: 0 is 9600 b/s", "Current selected grating: 1 or 2", "Zero offset high byte of machine 1, grating 1",
@@ -141,36 +142,33 @@ class CVIMonochromator:
     def _decodeDataBytes(self, string):
         self._cmdList = []
         for i in range(0, len(string)):
-            self._cmdList.append(ord(string[i]))
+            self._cmdList.append(string[i])  # ord()
         if len(self._cmdList) > 1:
             if self._cmdList[-2] < 128:
                 if self._verbose:
-                    print "Command Accepted!"
+                    print("Command Accepted!")
             else:
                 if self._verbose:
-                    print "Command Refused!"
+                    print("Command Refused!")
         if self._verbose:    
-            print "RXin' this: ", self._cmdList, "\n"
+            print("RXin' this: ", self._cmdList, "\n")
               
     def _sendMessage(self):
         if self._verbose:
-            print "TXin' this: ", self._cmdList
+            print("TXin' this: ", self._cmdList)
         for i in range(0, len(self._cmdList)):
             element = chr(self._cmdList[i])
-            self._port.write(element)
+            self._port.write(str.encode(element))
             sleep(0.01)  
     
     def _receiveMessage(self):
         message = self._port.readline()
-        #print "Received message is: ", message
+        # print ("Received message is: ", message)
         return message
      
              
 if __name__ == '__main__':
            
     monoChrom = CVIMonochromator("/dev/ttyUSB0")
-    
     monoChrom.echo()
-
-    monoChrom.closeCommunication()     
-       
+    monoChrom.closeCommunication()
