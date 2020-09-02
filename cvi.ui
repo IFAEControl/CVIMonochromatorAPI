@@ -672,10 +672,23 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="refreshPortsListButton">
+          <property name="text">
+           <string>Refresh List</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QComboBox" name="availableSerialsList"/>
         </item>
         <item>
          <widget class="QPushButton" name="connectSerialButton">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="text">
            <string>Connect</string>
           </property>
