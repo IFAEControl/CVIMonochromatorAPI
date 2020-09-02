@@ -481,16 +481,16 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>110</y>
+     <y>140</y>
      <width>781</width>
-     <height>491</height>
+     <height>451</height>
     </rect>
    </property>
    <property name="autoFillBackground">
     <bool>true</bool>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="controlTab">
     <attribute name="title">
@@ -502,7 +502,7 @@
        <x>10</x>
        <y>10</y>
        <width>751</width>
-       <height>441</height>
+       <height>401</height>
       </rect>
      </property>
      <property name="autoFillBackground">
@@ -537,7 +537,7 @@
         <rect>
          <x>30</x>
          <y>150</y>
-         <width>341</width>
+         <width>348</width>
          <height>31</height>
         </rect>
        </property>
@@ -573,6 +573,13 @@
           </property>
           <property name="text">
            <string>nm</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="queryPosButton">
+          <property name="text">
+           <string>query pos</string>
           </property>
          </widget>
         </item>
@@ -624,7 +631,7 @@
        <x>10</x>
        <y>10</y>
        <width>751</width>
-       <height>441</height>
+       <height>401</height>
       </rect>
      </property>
      <property name="autoFillBackground">
@@ -640,9 +647,9 @@
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>150</y>
+        <y>30</y>
         <width>641</width>
-        <height>101</height>
+        <height>301</height>
        </rect>
       </property>
       <property name="autoFillBackground">
@@ -657,9 +664,9 @@
       <widget class="QWidget" name="horizontalLayoutWidget_3">
        <property name="geometry">
         <rect>
-         <x>30</x>
+         <x>200</x>
          <y>30</y>
-         <width>591</width>
+         <width>421</width>
          <height>31</height>
         </rect>
        </property>
@@ -667,14 +674,7 @@
         <item>
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Available serial ports</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="refreshPortsListButton">
-          <property name="text">
-           <string>Refresh List</string>
+           <string>Available serial ports:</string>
           </property>
          </widget>
         </item>
@@ -682,15 +682,9 @@
          <widget class="QComboBox" name="availableSerialsList"/>
         </item>
         <item>
-         <widget class="QPushButton" name="connectSerialButton">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
+         <widget class="QPushButton" name="refreshPortsListButton">
           <property name="text">
-           <string>Connect</string>
+           <string>Refresh List</string>
           </property>
          </widget>
         </item>
@@ -720,6 +714,44 @@
    <property name="text">
     <string>CVI CM110 Monochromator</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_4">
+   <property name="geometry">
+    <rect>
+     <x>534</x>
+     <y>100</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <item>
+     <widget class="QPushButton" name="connectSerialButton">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Connect</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="disconnectSerialButton">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Disconnect</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

@@ -8,6 +8,7 @@ class CVIMonochromator:
     def __init__(self):
         self._cmdList = []
         self._verbose = False
+        self._is_connected = False
 
     def openCommunication(self, deviceLabel):
         self._port = serial.Serial(deviceLabel,
@@ -22,10 +23,13 @@ class CVIMonochromator:
                      xonxoff=False)
         if self._port.isOpen():
             print("\nPort is Open, that's a start, right? \n")
+            self._is_connected = True
         else:
             print("\nPort isn't Open, nothing good is expected! \n")
 
-    
+    def isConnected(self):
+        return self._is_connected
+
     def setVerbose (self, state):
         self._verbose = state
                 
@@ -80,7 +84,7 @@ class CVIMonochromator:
     def query(self, selectedCommand):
         self._cmdList = [56]
         self._instructionExchange(selectedCommand, "query")
-        queryResponse = self._cmdList[0]*256 + self._cmdList[1]
+        queryResponse = self._cmdList[-4]*256 + self._cmdList[-3]
         return queryResponse
 
     def type(self, selectedType):
@@ -99,6 +103,7 @@ class CVIMonochromator:
 
     def closeCommunication(self):
         self._port.close()
+        self._is_connected = False
         print("\nClosing communications, leamme alone now, was about that time! \n")
          
     def dumpToFile(self, fileName):
@@ -136,16 +141,15 @@ class CVIMonochromator:
         if dataByte != -1:
             hiByte = int(dataByte / 256)
             loByte = dataByte - (256 * hiByte)
-            if hiByte != 0:
-                self._cmdList.append(hiByte)
-            elif hiByte == 0 and cmd == "goto":
-                self._cmdList.append(hiByte)  
+            self._cmdList.append(hiByte)
             self._cmdList.append(loByte)
             
     def _decodeDataBytes(self, string):
         self._cmdList = []
+        # print("raw string: ", string)
         for i in range(0, len(string)):
-            self._cmdList.append(string[i])  # ord()
+            self._cmdList.append(int(string[i]))
+        # print("cmd list: ", self._cmdList)
         if len(self._cmdList) > 1:
             if self._cmdList[-2] < 128:
                 if self._verbose:
