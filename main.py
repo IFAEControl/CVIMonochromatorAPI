@@ -27,6 +27,7 @@ class MainWindow(QtW.QWidget):
 
         self.ui.unitsLabel.setText("nm")
         self.ui.availableSerialsList.addItems(get_ports())
+        self.ui.refreshPortsListButton.clicked.connect(self.refresh_ports_list)
         self.ui.connectSerialButton.clicked.connect(self.connect_serial_port)
         self.ui.gotoButton.clicked.connect(self.goto_function)
 
@@ -37,6 +38,10 @@ class MainWindow(QtW.QWidget):
         print(self.ui.spinBox.text())
         self.cvi_monochromator.goto(int(self.ui.spinBox.text()))
         self.ui.wavelenghtDisplay.setText(self.ui.spinBox.text())
+
+    def refresh_ports_list(self):
+        self.ui.availableSerialsList.clear()
+        self.ui.availableSerialsList.addItems(get_ports())
 
     def connect_serial_port(self):
         self.cvi_monochromator.openCommunication(self.ui.availableSerialsList.currentText())
