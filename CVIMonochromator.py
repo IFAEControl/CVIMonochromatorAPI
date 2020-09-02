@@ -5,8 +5,12 @@ from time import sleep
 class CVIMonochromator:
     "CVI's monochromator interface for RS232 communications"
     
-    def __init__(self, deviceLabel):
-        self._port = serial.Serial(deviceLabel, 
+    def __init__(self):
+        self._cmdList = []
+        self._verbose = False
+
+    def openCommunication(self, deviceLabel):
+        self._port = serial.Serial(deviceLabel,
                      baudrate=9600,
                      parity=serial.PARITY_NONE,
                      stopbits=serial.STOPBITS_ONE,
@@ -15,13 +19,12 @@ class CVIMonochromator:
                      timeout = 0,
                      rtscts=True,
                      dsrdtr=False,
-                     xonxoff=False)   
+                     xonxoff=False)
         if self._port.isOpen():
             print("\nPort is Open, that's a start, right? \n")
         else:
             print("\nPort isn't Open, nothing good is expected! \n")
-        self._cmdList = []
-        self._verbose = False
+
     
     def setVerbose (self, state):
         self._verbose = state
